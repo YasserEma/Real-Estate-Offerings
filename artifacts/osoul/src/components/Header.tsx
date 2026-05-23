@@ -11,6 +11,8 @@ export const Header: FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const isHomePage = location === `/${locale}` || location === `/${locale}/`;
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 80);
@@ -55,7 +57,7 @@ export const Header: FC = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           
           <Link href={`/${locale}`} className="shrink-0 flex items-center">
-            <Logo variant={scrolled ? "navy" : "ivory"} size="md" showWordmark={!scrolled} />
+            <Logo variant={!scrolled && isHomePage ? "ivory" : "navy"} size="md" showWordmark={!scrolled} />
           </Link>
 
           {/* Desktop Nav */}
@@ -66,7 +68,7 @@ export const Header: FC = () => {
                   href={link.path}
                   className={cn(
                     "flex items-center gap-1 font-semibold transition-colors",
-                    scrolled ? "text-foreground/80 hover:text-accent" : "text-white/90 hover:text-accent"
+                    !scrolled && isHomePage ? "text-white/90 hover:text-accent" : "text-foreground/80 hover:text-accent"
                   )}
                 >
                   {link.label}
@@ -119,7 +121,7 @@ export const Header: FC = () => {
 
           {/* Mobile Toggle */}
           <button 
-            className={cn("lg:hidden p-2 transition-colors", scrolled ? "text-foreground" : "text-white")}
+            className={cn("lg:hidden p-2 transition-colors", !scrolled && isHomePage ? "text-white" : "text-foreground")}
             onClick={() => setMobileMenuOpen(true)}
           >
             <Menu className="w-6 h-6" />
