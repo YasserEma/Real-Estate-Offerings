@@ -1,0 +1,813 @@
+# 🏛️ MASTER BUILD PROMPT v2 — أصول (Osoul) Premium Bilingual Real Estate Site
+
+> Paste this **entire prompt** into your vibe-code tool (v0 / Lovable / Bolt / Cursor) and **attach the CSV file** `عروض_العقارات.csv` in the same message. The agent must produce a complete, deployable, bilingual Arabic/English (RTL/LTR) website on first run.
+>
+> **⚠️ THREE PLACEHOLDERS** to fill after the build — search the codebase for these exact strings and replace:
+> - `<!-- OFFICE_ADDRESS -->` → physical office address in Sadat City
+> - `<!-- FACEBOOK_URL -->` → Facebook page URL
+> - `<!-- INSTAGRAM_URL -->` → Instagram profile URL
+
+---
+
+## 1. PROJECT BRIEF
+
+Build a **premium bilingual (Arabic RTL + English LTR) real estate showcase website** for a brokerage company named **"أصول" (Osoul)** operating in **Sadat City (مدينة السادات), Egypt** — including its three residential zones, its industrial zones, and the agricultural belts around it (Khatatba, Wadi El Natrun, El-Hizam El-Akhdar, the Cairo–Alexandria desert road).
+
+This is a **showcase / lead-generation site**, NOT a transactional marketplace. The site has **exactly one call-to-action everywhere: call us on the phone**.
+
+**The ONE phone number for the entire site:** `+20 102 021 0991`
+**WhatsApp:** same number → `https://wa.me/201020210991`
+
+The site must look so polished and trustworthy that a wealthy farmer, a factory investor, a returning Egyptian expat, or a Gulf-based investor feels they have walked into the lobby of a serious, established company — one that has been doing this for fifteen years and isn't afraid to lose a deal by telling the truth.
+
+---
+
+## 2. BRAND IDENTITY — THE SIGNATURE PROMISE
+
+| Attribute | Value |
+|---|---|
+| **Name (Arabic)** | أصول |
+| **Name (English)** | Osoul |
+| **Meaning** | "Foundations / Assets / Roots" — what a thing is built on |
+| **🎯 SIGNATURE PROMISE (Arabic)** | **"بنقولك العيوب قبل المزايا"** |
+| **🎯 SIGNATURE PROMISE (English)** | **"The flaws before the features."** |
+| **Sub-tagline (AR)** | "وسيط عقاري في مدينة السادات — سكني، زراعي، صناعي" |
+| **Sub-tagline (EN)** | "Real estate brokerage in Sadat City — residential, agricultural, industrial" |
+| **Brand personality** | Established, confident, honest, knowledgeable, premium-but-grounded. **NOT** flashy. **NOT** salesy. **NOT** "Dubai luxury developer." Think: a respected family firm that just happens to be very, very good at what it does. |
+| **Years in market** | **15+ years** — display as "أكثر من ١٥ سنة" / "Over 15 years" |
+| **Clients served** | **500+** — display as "+500 عميل" / "500+ clients" |
+
+### The Signature Promise is the soul of this site.
+Every section, every microcopy decision, every testimonial must orbit around this one idea: **at أصول, we tell you what's wrong with a property before we tell you what's right with it.** This is the *only* promise on the homepage hero. This is the *only* promise on the About page. The reviews must reflect customers experiencing this firsthand. The signature promise replaces all generic "honesty" platitudes.
+
+---
+
+## 3. LOGO DESIGN
+
+The agent must **generate an Arabic calligraphy logo for "أصول" as inline SVG** and use it across the site. Direction:
+
+- **Style:** Modernized Thuluth or simplified Diwani — flowing but legible. Not overly ornate; this is a premium business, not a wedding invitation.
+- **Composition:** The word "أصول" written in a single connected flourish. The descender of the final ل can extend into a subtle horizontal line — visually echoing "foundation / horizon."
+- **Color variants needed:**
+  - Primary: gold gradient `#B8893E → #D4A95C` on transparent (for navy backgrounds)
+  - Secondary: solid navy `#0B1E3F` (for ivory/light backgrounds)
+  - Monochrome ivory `#F8F4EA` (for photo overlays)
+- **Sizing:** SVG must scale crisp from 32px (favicon) to 400px (footer hero).
+- **Wordmark version:** also produce a horizontal lockup → `[Arabic mark] · OSOUL` in clean serif (e.g., Cormorant Garamond) for English contexts.
+- **Below the wordmark in tiny tracked caps:** "EST. 2010 · SADAT CITY"
+- **Favicon:** the single Arabic letter "أ" inside a navy circle with a gold ring.
+
+Deliver the SVG source inline in `components/Logo.tsx` so colors and sizes can be controlled via props.
+
+---
+
+## 4. DESIGN SYSTEM
+
+### 4.1 Color Palette — "Navy, Gold, Ivory"
+A premium, capital-investor palette. Deep navy carries authority; antique gold (not bright/yellow gold) carries heritage; warm ivory keeps it from feeling cold or corporate.
+
+```css
+/* Primary palette */
+--color-navy:        #0B1E3F;   /* Brand primary — deep, established */
+--color-navy-2:      #14305C;   /* Hover, elevated surfaces */
+--color-navy-3:      #1B3E73;   /* Tertiary backgrounds */
+--color-gold:        #B8893E;   /* Primary accent — antique, never bright */
+--color-gold-2:      #D4A95C;   /* Hover state for gold */
+--color-gold-soft:   #E8D8B0;   /* Background tints */
+--color-ivory:       #F8F4EA;   /* Page background */
+--color-cream:       #FDFBF5;   /* Card backgrounds */
+
+/* Text */
+--color-ink:         #0A0F1F;   /* Primary text — near-black navy */
+--color-ink-2:       #4A5468;   /* Secondary text */
+--color-ink-3:       #8892A6;   /* Muted text, captions */
+--color-line:        #E5DDC9;   /* Dividers, hairlines */
+
+/* Operation tags (the colored chips on cards) */
+--tag-sale:          #2E5C3E;   /* "للبيع" — confident green */
+--tag-rent:          #8B6F47;   /* "للإيجار" — warm bronze */
+--tag-wanted:        #6B4226;   /* "مطلوب للشراء" — deep terracotta */
+--tag-exchange:      #4A5C7C;   /* "بدل" — slate */
+--tag-partner:       #7C5C4A;   /* "مشاركة" — taupe */
+```
+
+### 4.2 Typography
+
+**Arabic stack:**
+- Display (hero, section headings): **"Cairo"** weights 800–900 — bold, confident, generous
+- Body: **"Tajawal"** weights 400–600 — clean, modern, highly readable
+- Numerals (Arabic-Indic) inline with body: same as body
+
+**English / Latin stack:**
+- Display: **"Cormorant Garamond"** weights 500–700 — serif, premium, balances Arabic Cairo
+- Body: **"Inter"** weights 400–600 — neutral, professional
+- Tracked caps (small labels, "EST. 2010"): Inter weight 600, letter-spacing 0.15em
+
+**Rules:**
+- Arabic body line-height: **1.85** (Arabic needs more leading than Latin)
+- English body line-height: 1.6
+- Headings have tight tracking: Arabic letter-spacing 0, English letter-spacing -0.01em
+- The phone number `+201020210991` ALWAYS renders in Inter, LTR, even inside Arabic flow — wrap in `<bdi>` and `direction: ltr`
+
+### 4.3 Spacing & Layout
+- 4px grid. Section padding: 120px desktop / 64px mobile.
+- Max content width: **1280px**, centered.
+- Generous whitespace — premium brands breathe.
+- Border radius: **8px** on cards, **6px** on buttons, **999px** on chips/tags. (Less rounded than v1 — navy/gold reads more refined with subtler curves.)
+- Shadows: refined and subtle.
+  - Card resting: `0 1px 3px rgba(11,30,63,0.06), 0 1px 2px rgba(11,30,63,0.04)`
+  - Card hover: `0 12px 32px rgba(11,30,63,0.10), 0 4px 8px rgba(11,30,63,0.06)`
+- **Gold hairlines:** use 1px gold lines (`--color-gold` at 40% opacity) as subtle dividers between sections — premium signature.
+
+### 4.4 Texture & Decorative Elements
+- Section dividers occasionally use a **thin gold hairline (1px) flanked by two small gold diamonds (◆)** — classic Arabic editorial design touch.
+- Hero and About page have a **subtle pattern overlay** (3% opacity) — an Islamic geometric tessellation (8-point star pattern) in gold over navy. Generate as SVG. Use sparingly — accent, not background.
+
+### 4.5 Direction & Internationalization
+- Arabic version: `<html lang="ar" dir="rtl">`
+- English version: `<html lang="en" dir="ltr">`
+- Mirror EVERY layout element: nav order, breadcrumbs, card internals, icon positions.
+- Use Tailwind logical properties (`ps-`, `pe-`, `ms-`, `me-`, `start-`, `end-`) — never `pl-`, `pr-`, `ml-`, `mr-`.
+
+---
+
+## 5. TECH STACK & ARCHITECTURE
+
+- **Framework:** Next.js 14 (App Router) + TypeScript
+- **Internationalization:** **`next-intl`** with locale segments: `/ar/...` and `/en/...`. Default redirect from `/` → `/ar`.
+- **Styling:** Tailwind CSS + `tailwindcss-rtl` plugin
+- **Animations:** Framer Motion (entrance, scroll-triggered, hover)
+- **Icons:** Lucide React
+- **CSV parsing:** PapaParse — runs at build time, outputs a typed `data/properties.ts` file. **No runtime CSV fetching.**
+- **Fonts:** Google Fonts CDN (Cairo, Tajawal, Cormorant Garamond, Inter) with `font-display: swap`
+- **i18n message files:** `messages/ar.json` and `messages/en.json` — every string on the site lives here
+- **Deployment target:** Vercel (static-export ready)
+- **Performance budget:** Lighthouse ≥95 on all four metrics
+
+---
+
+## 6. SITE ARCHITECTURE (URLs)
+
+| Arabic | English | Purpose |
+|---|---|---|
+| `/ar` | `/en` | Home |
+| `/ar/offers` | `/en/offers` | All offers (filterable) |
+| `/ar/offers/residential` | `/en/offers/residential` | سكني pre-filter |
+| `/ar/offers/agricultural` | `/en/offers/agricultural` | زراعي pre-filter |
+| `/ar/offers/industrial` | `/en/offers/industrial` | صناعي pre-filter |
+| `/ar/about` | `/en/about` | About |
+| `/ar/reviews` | `/en/reviews` | Testimonials |
+| `/ar/contact` | `/en/contact` | Contact |
+
+**Language switcher** lives in the header as a small pill: `العربية | EN`. The currently-active language is filled gold, the other is outline. Clicking it keeps the user on the same page in the other locale.
+
+### Header (sticky, glass blur on scroll)
+```
+[Logo]   الرئيسية | العروض ▾ | من نحن | آراء العملاء | تواصل      [العربية | EN]   [📞 010 2021 0991]
+```
+- "العروض ▾" is a dropdown showing: الكل | سكني | زراعي | صناعي
+- The phone CTA on the far end is a **gold pill** — always visible, always clickable
+
+### Footer
+Four columns (collapses to stack on mobile):
+1. **Logo + tagline** + "بنقولك العيوب قبل المزايا" in gold italic
+2. **Quick links** (same as header nav)
+3. **Contact** — phone, WhatsApp, office address (`<!-- OFFICE_ADDRESS -->`), hours
+4. **Follow us** — Facebook icon → `<!-- FACEBOOK_URL -->`, Instagram icon → `<!-- INSTAGRAM_URL -->`
+
+Footer bottom strip: `© ٢٠٢٦ أصول · جميع الحقوق محفوظة · مدينة السادات، مصر` / English equivalent
+
+---
+
+## 7. HOMEPAGE — Section by Section
+
+### 7.1 Hero (full viewport height, NO carousel)
+
+**Background:** A single high-quality, slightly desaturated image of Sadat City landscape at golden hour — wide shot showing the meeting of agricultural green, industrial silhouettes, and residential blocks. Overlay: `linear-gradient(135deg, rgba(11,30,63,0.92), rgba(11,30,63,0.55))`. Add the 3% Islamic geometric pattern over it.
+
+**Layout:** Centered text, gold accent line above the headline.
+
+**Arabic:**
+```
+            ◆ ─── أصول ─── ◆
+       
+       بنقولك العيوب قبل المزايا.
+       
+       وسيط عقاري في مدينة السادات.
+       ربع قرن من الخبرة · +500 عميل ·
+       سبب واحد للثقة: الصراحة قبل الصفقة.
+
+       [📞 اتصل الآن — 010 2021 0991]    [تصفّح العروض]
+       
+       ✓ معاينة ميدانية لكل عرض   ·   ✓ بدون عمولات خفية   ·   ✓ بنوصف العقار زي ما هو
+```
+
+**English:**
+```
+            ◆ ─── OSOUL ─── ◆
+       
+       The flaws before the features.
+       
+       Real estate brokerage in Sadat City.
+       15+ years of experience · 500+ clients ·
+       One reason to trust us: honesty before the deal.
+
+       [📞 Call Now — +20 102 021 0991]    [Browse Offers]
+       
+       ✓ Every property personally inspected   ·   ✓ No hidden fees   ·   ✓ We describe properties as they are
+```
+
+**Typography in hero:**
+- Headline (the signature promise): Cairo 900 (Arabic) / Cormorant Garamond 600 italic (English), 72px desktop / 44px mobile
+- Headline color: ivory `#F8F4EA`
+- Gold accent line + diamonds above headline
+- Sub-headline: Tajawal 500 (Arabic) / Inter 400 (English), 20px, opacity 0.85
+- Trust strip below CTAs: small icons in gold + light ivory text
+
+**Primary CTA:** Large gold pill, navy text, gold-2 hover glow. Calling icon has subtle 4-second pulse.
+**Secondary CTA:** Outlined ivory pill, fills navy on hover. Smooth-scrolls to category section.
+
+### 7.2 Stats Band (immediately below hero)
+Full-width band, navy background with gold hairline borders top & bottom. Four counters that animate counting up when scrolled into view.
+
+**AR:** +١٥ سنة في السوق · +٥٠٠ عميل خدمناهم · +٦٠ عرض نشط الآن · ٣ قطاعات نُغطّيها
+**EN:** 15+ Years in Market · 500+ Clients Served · 60+ Active Listings · 3 Sectors Covered
+
+Each counter: large gold number (Cairo 900 / Cormorant 600), small ivory label below, gold diamond between counters as separator.
+
+### 7.3 The Signature Promise — Featured Band
+This is the **single most important content section** on the homepage. A full-width section with cream background, a single sentence centered, and a story below.
+
+**Layout:**
+- Above: small gold tracked caps label → "وعدنا" / "OUR PROMISE"
+- Center: huge italic display text:
+  - AR: *"بنقولك العيوب قبل المزايا."*
+  - EN: *"The flaws before the features."*
+- Below in two-column body text (the explanation):
+
+**AR explanation (≈80 words):**
+> في سوق فيه كل سمسار بيحكي على المزايا، إحنا قررنا نبدأ من العيوب. لو الأرض فيها مشكلة في الكهرباء، هنقولك. لو البيت ناقص رخصة، هنقولك. لو المصنع جاره عمل مشكلة قانونية، هنقولك. مش عشان إحنا أحسن — عشان لما تشتري وتكتشف الحقيقة بعد التوقيع، إحنا اللي بنخسر. خدمنا أكثر من ٥٠٠ عميل في خمستاشر سنة، وأغلبهم رجعوا لينا تاني — لأننا ما خبّيناش حاجة.
+
+**EN explanation (matching ≈80 words):**
+> In a market where every broker leads with the strengths, we start with the weaknesses. If the land has an electricity issue, we'll tell you. If the house is missing a permit, we'll tell you. If the factory's neighbor filed a complaint, we'll tell you. Not because we're better — but because if you discover the truth after signing, we're the ones who lose you. We've served 500+ clients over 15 years, and most of them came back — because we didn't hide anything.
+
+### 7.4 "نُغطّي ثلاثة قطاعات" — Categories Showcase
+Three large clickable cards (3-col grid desktop / stack mobile). Each card has:
+- Full-width demo image (16:10 ratio) — see §14 for image mapping
+- Category name in Cairo 800 (Arabic) / Cormorant 600 (English) over the image with a navy gradient
+- Below image: one-line description (Tajawal / Inter)
+- Dynamic count: "١٢ عرض متاح" / "12 offers available"
+- Subtle "← استعرض" / "Browse →" link with arrow that animates on hover
+
+**Card 1 — سكني / Residential**
+- AR: "فلل، بيوت، شقق، عمارات، قطع أراضٍ — في كل مناطق السادات السكنية"
+- EN: "Villas, houses, apartments, buildings, plots — across every residential zone of Sadat"
+
+**Card 2 — زراعي / Agricultural**
+- AR: "مزارع، أراضٍ زراعية، عنابر دواجن — من الخطاطبة إلى وادي النطرون"
+- EN: "Farms, agricultural land, poultry barns — from Khatatba to Wadi El Natrun"
+
+**Card 3 — صناعي / Industrial**
+- AR: "مصانع، أراضي مصانع، عنابر — في كل المناطق الصناعية بالسادات"
+- EN: "Factories, industrial plots, hangars — across all Sadat industrial zones"
+
+### 7.5 "عروض مختارة" — Featured Offers Preview
+- Section title with gold hairline divider
+- AR sub: "نختار لك ٦ عروض هذا الأسبوع — والمزيد على صفحة العروض."
+- EN sub: "Six handpicked offers this week — explore all on the offers page."
+- Grid: **6 cards** randomly selected from CSV at build time, ensuring at least 2 from each category
+- Below grid: large pill button "عرض كل العروض ←" / "View All Offers →" → routes to `/offers`
+
+### 7.6 "لماذا أصول؟" — Why Osoul
+Three columns. **The first column is the signature promise** (reinforced for visitors who scrolled past the band). The other two add depth.
+
+**1. 🎯 العيوب قبل المزايا / Flaws Before Features**
+- AR: "لو العرض فيه عيب، هنقولك قبل ما نقولك على ميزة. لأنك مش هترجع تشتري تاني لو حسّيت إنك اتلسعت."
+- EN: "If a property has flaws, we name them before we name its strengths. Because you won't come back if you feel deceived."
+
+**2. 🗺️ خبرة محلية حقيقية / Real Local Expertise**
+- AR: "عارفين كل منطقة في السادات بأرقامها — السكنية بأرقام قطعها، الصناعية بأرقام مصانعها، الزراعي بنوع تربته."
+- EN: "We know every zone in Sadat by its numbers — residential by plot codes, industrial by factory layouts, agricultural by soil type."
+
+**3. 🤝 عميل واحد، وسيط واحد / One Client, One Broker**
+- AR: "اللي بيبدأ معاك هو اللي بيخلّص معاك. مش بنرمي عرضك لسمسار تاني، ومش بنبيع رقمك."
+- EN: "The broker who answers your first call closes your final deal. We don't pass clients between agents, and we don't sell your number."
+
+Each pillar: gold-outlined icon, navy title, ink-2 body text. Subtle hover: pillar lifts 4px, icon rotates 5°.
+
+### 7.7 Reviews Preview Band
+- Cream background, gold hairline top & bottom
+- Title: "آراء عملائنا" / "What Our Clients Say"
+- Show **3 randomly-selected** testimonial cards (see §11 for card design)
+- Below: ghost button with gold border → "اقرأ كل الآراء (٥٢) ←" / "Read all reviews (52) →"
+
+### 7.8 Closing Contact Band
+Full-width navy section with gold geometric pattern at 5% opacity.
+
+**AR:**
+> ## عندك أرض؟ عندك ميزانية وتدوّر على الفرصة؟
+> اتصل بينا. هنرد عليك بصراحة — حتى لو الإجابة مش اللي بتحبها تسمعها.
+
+**EN:**
+> ## Got land? Got capital and looking for the right opportunity?
+> Call us. We'll answer you honestly — even if the answer isn't what you want to hear.
+
+Massive phone number (Inter 700, gold, 56px) with click-to-call. Subtle pulse animation on the call icon. WhatsApp ghost button immediately next to it. Below: working hours.
+
+---
+
+## 8. OFFERS PAGE (`/[locale]/offers`) — Filter System
+
+This is the operational heart of the site. **Filter UX must feel instant.**
+
+### 8.1 Layout
+- **Desktop:** Sidebar filters (320px wide) on the **start side** (right in AR, left in EN). Card grid (3 cols) on the opposite side.
+- **Mobile:** Sticky button bottom-end of viewport: "🔍 فلترة (٣ مطبّقة)" / "Filter (3 active)". Opens a full-screen drawer.
+
+### 8.2 Filter Panel — show ONLY these filters
+
+> **Reminder:** These match the 5 CSV columns the user wants visible. Price and details are never filterable because they're never displayed.
+
+1. **التصنيف / Classification** — chip toggles (multi-select):
+   - الكل / All · سكني / Residential · زراعي / Agricultural · صناعي / Industrial · مختلط / Mixed
+   - "مختلط / Mixed" matches any row whose classification contains "/" (e.g., "زراعي / صناعي")
+
+2. **العملية / Operation** — chip toggles (multi-select), color-coded matching §4.1:
+   - للبيع / For Sale · للإيجار / For Rent · مطلوب للشراء / Wanted · بدل / Exchange · مشاركة / Partnership
+   - Compound values like "للبيع / مشاركة" match BOTH filters
+
+3. **النوع / Property Type** — searchable dropdown with checkboxes (many distinct values)
+   - Auto-populate from CSV; never hard-code
+   - Include search input inside dropdown
+
+4. **الموقع / Location** — searchable dropdown with checkboxes
+   - Auto-populate from CSV
+   - Above the dropdown, three quick-filter chips:
+     - "كل مناطق السادات السكنية" / "All Sadat residential zones"
+     - "المناطق الصناعية" / "Industrial zones"
+     - "خارج السادات" / "Outside Sadat"
+   - "غير محدد" rows grouped as "موقع عند الاستفسار" / "Location on inquiry"
+
+5. **نطاق المساحة / Area Range** — adaptive
+   - Two sliders shown depending on selected category:
+     - "بالمتر / In m²" — for residential/industrial
+     - "بالفدان / In feddan" — for agricultural
+   - Slider with histogram showing distribution
+   - Unit conversion logic (see §13)
+
+### 8.3 Filter Behavior
+- **Live filtering** with 150ms fade transition — no "Apply" button
+- **Active filter chips** above the grid: `سكني ✕ · للبيع ✕ · المنطقة ٢٠ ✕   مسح الكل` / `Residential ✕ · For Sale ✕ · Zone 20 ✕   Clear all`
+- **Result counter** in Arabic-Indic numerals (AR) or Western digits (EN): "عرض ١٢ من أصل ٦٨ عرض" / "Showing 12 of 68 offers"
+- **Empty state:** friendly illustration + message:
+  - AR: "ما لقيناش عروض بالمواصفات دي — وسّع الفلترة أو اتصل بينا، يمكن عندنا عرض لسه ما اتنشرش."
+  - EN: "No offers match these filters — try broadening, or call us. We may have something not yet listed."
+- **Sort dropdown** top-end: الأحدث | الأكبر مساحة | الأصغر مساحة | حسب التصنيف / Newest | Largest area | Smallest area | By category
+
+---
+
+## 9. PROPERTY CARD DESIGN
+
+> **🔒 CRITICAL: Each card displays ONLY these 5 fields:**
+> **التصنيف · النوع · العملية · الموقع · المساحة**
+>
+> The CSV columns `السعر`, `التفاصيل`, `رقم التواصل` exist but **must never be displayed anywhere in the UI**. The ONLY way the visitor learns price or details is by **calling the main phone number**. There are **no individual property detail pages.**
+
+### Card layout (cream background, 8px radius, refined shadow):
+
+```
+┌──────────────────────────────────────┐
+│                                       │
+│   [Demo image — 16:10, by category]  │
+│                                       │
+│   ┌──────┐               ┌─────────┐ │
+│   │للبيع │               │ #٠١٢    │ │
+│   └──────┘               └─────────┘ │
+├──────────────────────────────────────┤
+│                                       │
+│   فيلا                                │ ← النوع (Cairo 700, 22px)
+│   ── (gold hairline, 24px wide) ──   │
+│                                       │
+│   📍 المنطقة ١٣ — مدينة السادات      │ ← الموقع (Tajawal 500)
+│   📐 ٦٥٠ متر                          │ ← المساحة
+│   🏷️ سكني                             │ ← التصنيف (small chip)
+│                                       │
+├──────────────────────────────────────┤
+│   للاستفسار والمعاينة                 │
+│   📞  010 2021 0991                  │ ← gold pill, full-width
+└──────────────────────────────────────┘
+```
+
+- **Image:** assigned by `النوع` then falling back to `التصنيف` (see §14)
+- **Operation tag:** top-end corner, color from §4.1
+- **Offer number:** small navy chip top-start, format `#٠١٢` (AR) or `#012` (EN), zero-padded
+- **Phone CTA:** clicking triggers `tel:+201020210991` AND smoothly shows a tiny inline confirmation just under the card: "بنحب نسمعك — قول لينا عن عرض #٠١٢" / "Mention offer #012 when you call us."
+- **Hover (desktop):** card lifts 4px, shadow deepens, image zooms 5% (400ms ease), phone CTA shifts outline → filled gold
+
+### Three forbidden things on this card:
+- ❌ No "View Details" button
+- ❌ No price (even "Price on request" — keep it absent so calling becomes the only path)
+- ❌ No alternate contact numbers (only the main brand number)
+
+---
+
+## 10. ABOUT PAGE (`/[locale]/about`)
+
+**Corporate voice — no individuals named, no founder photos.** The brand is the protagonist.
+
+### Sections in order:
+
+**1. Hero band**
+- AR: "أصول. اسم على مسمى."
+- EN: "Osoul. Foundations, by name and by practice."
+- Small italic sub: "خمستاشر سنة في سوق السادات — وعرض واحد ما اتلسعش فيه عميل." / "Fifteen years in the Sadat market — and not one client deceived."
+
+**2. قصتنا / Our Story** (3-4 paragraphs)
+The agent writes this fresh. Key points to include:
+- Founded over 15 years ago in Sadat City
+- Watched the city grow from Zone 1 to Zone 35
+- Watched the industrial zones expand from 4 to 8
+- Saw too many brokers selling "potential" instead of property
+- Decided on a different rule: **flaws before features**
+- 500+ clients later, the rule still holds
+
+**3. وعدنا / Our Promise** (the signature, repeated and explained)
+- The full Arabic signature `بنقولك العيوب قبل المزايا` as a giant pull-quote
+- Three bullet points explaining what it means in practice:
+  - "بنزور كل عقار قبل ما نضيفه على القائمة" / "We visit every property before listing it"
+  - "بنوصف العقار في المكالمة الأولى زي ما هو" / "We describe the property accurately on the first call"
+  - "لو السعر مبالغ فيه، بنقولك" / "If the price is inflated, we'll say so"
+
+**4. ٥٠٠+ عميل / 500+ Clients band**
+Big number with a short note:
+- AR: "من مالك أرض في الخطاطبة، لصاحب مصنع في المنطقة الثامنة، لشاب اشترى أول بيت ليه في المنطقة ٢٠ — كلهم اتعاملوا معانا. وأغلبهم رجعوا تاني."
+- EN: "From the landowner in Khatatba, to the factory owner in the 8th Industrial Zone, to the young man buying his first home in Zone 20 — they all worked with us. And most came back."
+
+**5. مناطقنا / Our Coverage** — visual list of zones we cover, grouped
+- مناطق السادات السكنية / Sadat Residential Zones: list as small chips (Zone 1, 5, 8, 13, 15, 20, 21, 23, 24, 29, 33, 35, بيت الوطن, النخيل, الروضة, المربع الذهبي…)
+- المناطق الصناعية / Industrial Zones: 4th, 5th, 6th, 7th, 8th, المطورين 6
+- الأحزمة الزراعية / Agricultural Belts: الخطاطبة, الحزام الأخضر, وادي النطرون, العامرية, طريق المطار العجيزي…
+
+**6. Closing CTA band** — same component as homepage §7.8
+
+---
+
+## 11. REVIEWS PAGE (`/[locale]/reviews`) — 52 TESTIMONIALS
+
+This page must feel **lived-in and organic**, not like a wall of AI-generated praise.
+
+### 11.1 Page header
+- AR title: "آراء عملائنا"
+- EN title: "What Our Clients Say"
+- AR sub: "أكثر من ٥٠٠ عميل تعاملوا معانا. هنا ٥٢ منهم بآرائهم وبأسمائهم."
+- EN sub: "Over 500 clients have worked with us. Here are 52 of them, in their own words."
+- Overall rating: ★★★★★ **٤.٨ / ٥** · مبني على ٥٢ تقييم · **4.8 / 5** · based on 52 reviews
+
+### 11.2 Filter chips
+الكل · سكني · زراعي · صناعي · ٥ نجوم · ٤ نجوم / All · Residential · Agricultural · Industrial · 5 stars · 4 stars
+
+### 11.3 The wall — Generate **EXACTLY 52 testimonials**
+
+**Instructions to the AI agent:**
+
+Generate 52 unique testimonials, originally written in Egyptian colloquial Arabic. The goal is **authenticity**, not praise saturation.
+
+**A. Variety of voices & names**
+- Mix male/female roughly 70/30 (realistic for this market)
+- Use real common Egyptian first+last name combinations — invent fresh each time, never repeat
+- Mix titles: ~30% with م. / د. / أ. / الحاج / الحاجة; rest without titles
+- Mix reviewer locations: Sadat City, Menoufia, Cairo suburbs (Shorouk, 6th October), Alexandria, Tanta, Damanhour, plus some Egyptian expats from السعودية / الإمارات / الكويت / قطر
+
+**B. Variety of length**
+- ~15 short (1-2 sentences)
+- ~25 medium (3-5 sentences, one specific detail)
+- ~12 long (a small paragraph with a small story)
+
+**C. Variety of ratings** — this is CRITICAL for credibility:
+- ~40 reviews: 5 stars
+- ~10 reviews: 4 stars — must include a small, realistic criticism ("الرد ع الواتساب أحياناً بياخد وقت" / "كان نفسي الزيارة الميدانية تكون أسرع" / "السعر بعد التفاوض اتغير شوية عن أول مكالمة")
+- ~2 reviews: 3 stars — politely critical but ending positively. **These two are essential** — they're what prevent the wall from looking AI-generated.
+
+**D. Variety of dates** — spread across the last 30 months. Use Arabic month names + Arabic-Indic year digits ("مارس ٢٠٢٤", "أكتوبر ٢٠٢٣", "يناير ٢٠٢٦").
+
+**E. Specificity is the soul of authenticity.** Each review must mention at least ONE concrete thing. Rotate through:
+- A specific Sadat zone: Zone 13 / Zone 20 / Zone 24 / Zone 29 / Industrial Zone 6 / Industrial Zone 8 / Khatatba / El-Hizam El-Akhdar / Beit El Watan / المربع الذهبي
+- A specific property type: villa / plastic factory / olive farm / agricultural land / building / apartment / poultry barn / chemical factory
+- A specific action: "ساعدوني أبيع" / "لقيت عندهم" / "اتفاوضت معاهم" / "زرت معاهم الأرض" / "نصحوني ما اشتريش العرض الأول"
+- A specific behavior demonstrating the signature promise: "قاللي عيب مكنتش هلاحظه" / "صرّحوا لي بمشكلة في الكهرباء" / "قالوا لي السعر مبالغ فيه" — **at least 10 of the 52 reviews must reference flaws-before-features in concrete language**
+- A timeframe: "أخدت معاهم ٣ أسابيع" / "خلصنا الصفقة في ١٠ أيام"
+
+**F. Tone** — natural Egyptian colloquial Arabic, not formal MSA. Use phrases like:
+- "والله شغل محترم"
+- "أنا فعلاً مستفيد"
+- "ناس بتقول الكلام اللي مش عاجبك قبل اللي عاجبك"
+- "ربنا يكرمهم"
+- "صراحة، الأمانة دي مش متوفرة"
+- "قالولي العيب قبل ما يقولولي على الميزة، وده اللي خلاني أكمل معاهم"
+
+Avoid corporate phrases like "خدمة عملاء ممتازة" / "تجربة استثنائية" / "احترافية عالية" — these scream AI-generated.
+
+**G. What NOT to do:**
+- Don't make every review mention "honesty" — vary the praised attribute (speed, knowledge, patience, follow-up, fair pricing, refusing to push a bad deal, transparency, local knowledge)
+- Don't use identical sentence structures
+- Don't include emojis
+- Don't reference "the website" or "the platform" — this is a brokerage, customers met them in person or by phone
+- Don't fabricate awards, certifications, or specific monetary numbers
+- Don't write reviews that all sound the same age — vary writing styles (some sound older, some younger)
+
+**H. For the English version of the page:**
+Display the **original Arabic** review at full size, with a small italic English summary translation in muted gray below each review (about 30% the size of the original). This preserves authenticity while making content accessible to English readers. **Do NOT replace the Arabic with English** — that would lose the soul.
+
+### 11.4 Review card design (masonry layout, varied heights = organic feel)
+```
+┌─────────────────────────────────────┐
+│ ★★★★★                مارس ٢٠٢٤      │
+│                                      │
+│ "قالولي العيب قبل ما يقولولي على    │
+│  الميزة، وده اللي خلّاني أكمل معاهم.│
+│  الأرض في الحزام الأخضر، البير      │
+│  كان ضعيف وقالوا لي قبل ما أوقّع." │
+│                                      │
+│  ── (gold hairline) ──               │
+│                                      │
+│  أ  م. أحمد الشناوي                  │
+│     صاحب مزرعة — الحزام الأخضر       │
+└─────────────────────────────────────┘
+```
+- **Avatar:** Circle with the first Arabic letter of the first name on a soft gold-gradient background. **DO NOT use AI-generated photos of people** — they look fake fast, and break the trust.
+- **Star icons:** gold filled stars, ink-3 empty stars
+- **Masonry layout** (not rigid grid) — varied card heights look organic and real
+- **Staggered fade-in** animation as the user scrolls (Framer Motion `whileInView`, 50ms stagger)
+
+### 11.5 Bottom of reviews page
+Small honest note in muted ink-3 text:
+- AR: "كل الآراء فوق من عملاء تعاملوا معانا فعلياً. لو حابب تتأكد من أي تجربة، اتصل بينا ونحطّك في تواصل مباشر مع العميل بإذنه."
+- EN: "All reviews above are from clients who actually worked with us. If you'd like to verify any experience, call us — we'll connect you with the client directly, with their permission."
+
+---
+
+## 12. CONTACT PAGE (`/[locale]/contact`)
+
+Clean, focused, single-purpose: get them to call.
+
+**Layout (two columns desktop, stack mobile):**
+
+**Left column — Get in touch**
+- Massive phone number, Inter 800, 64px, gold, click-to-call
+- WhatsApp button (gold outline, navy text): `https://wa.me/201020210991?text=السلام عليكم، شفت الموقع وحابب أستفسر عن…`
+- Working hours:
+  - AR: "السبت — الخميس: ٩ صباحاً — ٩ مساءً · الجمعة: من بعد العصر"
+  - EN: "Sat – Thu: 9 AM – 9 PM · Fri: After Asr prayer"
+- Office address (`<!-- OFFICE_ADDRESS -->`):
+  - Show with a 📍 icon in gold
+  - Wrap in `<address>` semantic element
+
+**Right column — Map**
+- Embedded Google Maps iframe centered on the office address:
+  ```html
+  <iframe src="https://www.google.com/maps?q=<!-- OFFICE_ADDRESS -->&output=embed" />
+  ```
+- Frame the map with a 1px gold hairline border, 8px radius
+- Below map: small ink-3 caption: "موقع مكتبنا الرئيسي بمدينة السادات" / "Our main office in Sadat City"
+
+**Footer of contact page:**
+Repeat the signature promise as a soft footer band:
+- AR: *"بنقولك العيوب قبل المزايا — حتى عن طريق التليفون."*
+- EN: *"The flaws before the features — even over the phone."*
+
+**🚫 No contact form on this site.** Forms dilute the phone-call CTA. The user explicitly wants phone as the only conversion path.
+
+---
+
+## 13. DATA HANDLING — CSV PROCESSING
+
+When parsing the attached `عروض_العقارات.csv`:
+
+1. **Strip the UTF-8 BOM** (`﻿`) at file start
+2. Extract these 5 columns per row: `التصنيف`, `النوع`, `العملية`, `الموقع`, `المساحة`
+3. **Do not import** `السعر`, `التفاصيل`, `رقم التواصل` — they must not exist in the typed object
+4. Replace `"غير محدد"` in `الموقع` with display value: "موقع عند الاستفسار" / "Location on inquiry"
+5. Replace `"غير محدد"` in `المساحة` with display value: "حسب الاستفسار" / "On inquiry"
+6. **Split compound operations** like `"للبيع / مشاركة"` on `/` — row matches both filters
+7. **Split compound classifications** like `"زراعي / صناعي"` on `/` — row belongs to both categories AND to the "مختلط / Mixed" super-category
+8. Generate a **stable offer number** (1-based index, zero-padded, formatted `#٠٠١` in AR / `#001` in EN) for each row
+9. **Normalize area strings** for the slider:
+   - `"650 متر"` → `{value: 650, unit: "m"}`
+   - `"20 فدان"` → `{value: 20, unit: "feddan"}`
+   - `"440 متر (200 مباني)"` → `{value: 440, unit: "m"}` (use the larger/total number)
+   - `"6 فدان و 3 قيراط"` → `{value: 6.125, unit: "feddan"}` (24 qirat = 1 feddan)
+   - `"2 فدان وعنبر 15 ألف طائر"` → `{value: 2, unit: "feddan"}` (ignore the secondary count)
+10. **English translations**: build a translation map for:
+    - Categories: سكني → Residential, زراعي → Agricultural, صناعي → Industrial, مختلط → Mixed
+    - Operations: للبيع → For Sale, للإيجار → For Rent, مطلوب للشراء → Wanted, بدل → Exchange, مشاركة → Partnership
+    - Common types: فيلا → Villa, بيت → House, شقة → Apartment, عمارة → Building, قطعة أرض → Plot, مزرعة → Farm, أرض زراعية → Agricultural Land, مصنع بلاستيك → Plastic Factory, مصنع كيماوي → Chemical Factory, مصنع غذائي → Food Factory, مصنع أسمدة كيماوي → Chemical Fertilizer Factory, عنبر دواجن → Poultry Barn, أرض مصنع → Factory Plot, مزرعة دواجن → Poultry Farm, مشروع متكامل → Integrated Project, شقق مفروشة → Furnished Apartments
+    - Locations: keep Arabic zone numbers as "Zone N" in English (المنطقة ١٣ → Zone 13), translate place names (الخطاطبة → Khatatba, وادي النطرون → Wadi El Natrun, الحزام الأخضر → El-Hizam El-Akhdar / Green Belt, بيت الوطن → Beit El Watan, النخيل → El-Nakhil, الروضة → El-Rawda, المربع الذهبي → Golden Square, المطورين → El-Motawereen, العامرية → El-Ameriya)
+11. Output → typed `data/properties.ts`. Re-running the build with an updated CSV regenerates everything.
+
+---
+
+## 14. IMAGES — Demo Image Mapping
+
+Since the CSV has no images, every card gets a demo image **chosen automatically by `النوع` → fallback to `التصنيف`**. Use Unsplash URLs (free, no key needed):
+
+```ts
+const imageMap: Record<string, string> = {
+  // سكني / Residential
+  "فيلا":                  "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80",
+  "فيلا دوبلكس":            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+  "بيت":                   "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=80",
+  "منزل":                  "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=80",
+  "شقة":                   "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80",
+  "شقق مفروشة":             "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+  "عمارة":                 "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+  "عمارة سكنية":            "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=1200&q=80",
+  "عمارة أهالي":            "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
+  "قطعة أرض":               "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80",
+  "قطعة أرض / مبنى":        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
+  "نصف قطعة إسكان":         "https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80",
+
+  // زراعي / Agricultural
+  "مزرعة":                  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80",
+  "مزرعة / أرض":            "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=1200&q=80",
+  "مزرعة بها استراحة":       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80",
+  "مزرعة دواجن":            "https://images.unsplash.com/photo-1569059078571-d6f64a7ec88b?w=1200&q=80",
+  "أرض زراعية":             "https://images.unsplash.com/photo-1530507629858-e3759c674cf2?w=1200&q=80",
+  "أرض استثمارية":          "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80",
+  "عنبر دواجن وأرض":        "https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=1200&q=80",
+
+  // صناعي / Industrial
+  "مصنع بلاستيك":           "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200&q=80",
+  "مصنع كيماوي":            "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80",
+  "مصنع غذائي":             "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80",
+  "مصنع أسمدة كيماوي":       "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&q=80",
+  "مصنع بلاستيك / كيماوي":   "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80",
+  "أرض مصنع غذائي":         "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80",
+  "أرض مصنع هندسي":         "https://images.unsplash.com/photo-1581092446327-9b52bd1570c2?w=1200&q=80",
+
+  // Mixed / Special
+  "مشروع متكامل":           "https://images.unsplash.com/photo-1574691250077-03a929faece5?w=1200&q=80",
+  "عمارة للبدل":             "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+
+  // Fallbacks
+  "_default_سكني":          "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80",
+  "_default_زراعي":         "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80",
+  "_default_صناعي":         "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200&q=80",
+  "_default_":              "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
+};
+```
+
+**Image rules:**
+- All images: `loading="lazy"`, proper Arabic + English `alt` text (`alt="عرض فيلا في المنطقة ١٣"` / `alt="Villa in Zone 13"`)
+- Soft blur-up effect on load (10px → 0)
+- Apply a subtle warm filter: `filter: contrast(1.05) saturate(0.92) sepia(0.05)` — makes mismatched stock images feel like part of the same brand world
+
+**Hero image:** Use this Unsplash URL → `https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=2400&q=85` (a wide landscape that works as a desaturated background for the navy overlay).
+
+---
+
+## 15. INTERNATIONALIZATION (i18n) DETAILS
+
+### 15.1 Library: `next-intl`
+- Locale segments: `/ar` (default) and `/en`
+- All UI strings live in `messages/ar.json` and `messages/en.json`
+- Build separate sitemaps per locale, alternate `hreflang` tags in `<head>`
+
+### 15.2 Language switcher
+- Header pill: `العربية | EN` — current locale is filled gold (`bg-gold text-navy`), other is outline (`border border-ivory/40 text-ivory`)
+- Clicking the switcher takes the user to the **same page** in the other locale (`/ar/offers/residential` ↔ `/en/offers/residential`)
+- Remember the preference in localStorage so returning visitors land on their preferred locale
+
+### 15.3 Locale-aware formatting
+- **Numbers:** Arabic-Indic digits (٠١٢٣٤٥٦٧٨٩) in Arabic body text; Latin digits (0123456789) in English
+- **Exception:** the phone number ALWAYS appears as `+20 102 021 0991` (Latin digits) in both locales, for click-to-call compatibility
+- **Dates:** Arabic months (يناير، فبراير...) in AR; English months (January, February...) in EN
+- **Direction:** `<html dir="rtl">` in AR, `<html dir="ltr">` in EN; Tailwind logical properties everywhere
+
+### 15.4 Translation completeness
+EVERY string on the site must exist in both `ar.json` and `en.json`. Including:
+- Nav items, button labels, filter labels, empty states, error states
+- Category names, operation names, property types, location names (see §13 step 10)
+- Footer text, hours, address label
+- The signature promise (in both languages)
+- The 52 reviews remain in original Arabic, with small English summary translations beneath them on the EN page only
+
+---
+
+## 16. MICRO-INTERACTIONS (the polish that earns the "wow")
+
+- **Scroll-triggered fade-ins** (Framer Motion `whileInView`, `once: true`, 30px y-offset, 600ms ease-out, 80ms stagger between sibling elements)
+- **Counter animations** in the stats band (count 0 → target over 1.8s, ease-out)
+- **Sticky header glassmorphism** — transparent ivory at top, `backdrop-blur-md bg-ivory/85` after 80px scroll, gold hairline appears below
+- **Phone CTA pulse** — every 4 seconds, a soft gold ring expands and fades from the call icon
+- **Filter chip click feedback** — scale 0.95 → 1.0 spring on tap
+- **Card hover** — lift 4px + shadow deepen + image zoom 5% + CTA fill, all simultaneously, 400ms ease
+- **Logo hover** — gold gradient subtly shifts
+- **Language switcher** — current locale's pill slides smoothly to the clicked option (Framer Motion `layoutId`)
+- **Image lazy reveal** — soft blur-up (10px → 0) as image loads
+- **Smooth-scroll** for in-page anchor links
+
+### ❌ Things we never do
+- No popups
+- No live chat widget
+- No newsletter signup modals
+- No exit-intent overlays
+- No cookie banner unless legally required (and if required, keep it tiny and bottom-corner)
+- No autoplay video
+- No carousels anywhere (including the hero)
+- No "click to flip" property cards (gimmicky)
+
+---
+
+## 17. ACCESSIBILITY & PERFORMANCE
+
+- Lighthouse target: **≥95** on Performance, Accessibility, Best Practices, SEO
+- All interactive elements: keyboard navigable, gold outline focus ring (`outline: 2px solid var(--color-gold); outline-offset: 2px`)
+- All images lazy-loaded, properly sized
+- All phone CTAs: `<a href="tel:+201020210991">` (native dialer)
+- WhatsApp links: `<a href="https://wa.me/201020210991">`
+- Color contrast: WCAG AA minimum on all text-on-background combinations (navy on ivory = ✓, gold on navy = ✓, ink-3 captions need verification)
+- `<html lang="ar" dir="rtl">` / `<html lang="en" dir="ltr">` set per locale
+- `alt` text in the active locale for every image
+- Semantic HTML: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>` for cards, `<address>` for office, `<footer>`
+- Reduced-motion support: `@media (prefers-reduced-motion: reduce)` disables all Framer Motion animations
+
+### SEO essentials
+- Per-locale `<title>` and `<meta description>`:
+  - AR home: `أصول | وسيط عقاري في مدينة السادات — سكني، زراعي، صناعي`
+  - EN home: `Osoul | Real Estate Brokerage in Sadat City — Residential, Agricultural, Industrial`
+- OpenGraph image: navy background with gold "أصول · OSOUL" logo + signature promise in both languages
+- `hreflang` alternate tags linking AR ↔ EN versions of each page
+- Schema.org `RealEstateAgent` JSON-LD with: name (both), telephone, address, openingHours, sameAs (FB + IG URLs)
+
+---
+
+## 18. ABSOLUTE DOs AND DON'Ts
+
+### ✅ DO
+- Show only the 5 allowed CSV fields on every card (التصنيف · النوع · العملية · الموقع · المساحة)
+- Make the phone `+20 102 021 0991` the ONLY action verb across the entire site
+- Generate exactly 52 varied, specific, human-sounding testimonials with the rating distribution specified in §11
+- Make the signature promise "بنقولك العيوب قبل المزايا" / "The flaws before the features" the spine of all messaging
+- Use Arabic-Indic numerals (٠١٢٣٤٥٦٧٨٩) in Arabic body, Latin digits in English, phone always Latin in both
+- Build navy-gold-ivory premium aesthetic — refined, established, NOT flashy
+- Generate the Arabic calligraphy logo as inline SVG
+- Use Tailwind logical properties (`ps-`, `pe-`, etc.) — never directional
+- Pre-filter category pages (`/offers/residential`, etc.)
+- Update filters live, no Apply button
+- Default `/` → `/ar` (Arabic is primary)
+- Build a full English translation of every page; preserve Arabic testimonials on EN page with English summary subtitles
+
+### ❌ DON'T
+- Don't display prices, details, or any contact number other than `+20 102 021 0991`
+- Don't create individual property detail pages — the phone IS the detail page
+- Don't invent founder/team names or photos
+- Don't make all 52 reviews 5-star — mix in 10 four-star and 2 three-star with realistic mild criticism
+- Don't use emojis inside testimonials
+- Don't use AI-generated photos of people for reviewer avatars — use letter circles
+- Don't use carousels, popups, chat widgets, exit modals
+- Don't translate testimonials to English on the EN page — keep Arabic with small English summary
+- Don't use bright/yellow gold — antique gold only (`#B8893E`)
+- Don't fabricate awards, certifications, or partnerships
+- Don't use generic "trust" platitudes — every claim should orbit around the signature promise
+
+---
+
+## 19. DELIVERABLE & README
+
+The build must produce:
+- A fully working, deployable, **bilingual** Next.js site with all 8 page templates × 2 locales
+- CSV-driven offers grid with live filters
+- 52 generated testimonials on `/[locale]/reviews` (Arabic originals + EN summaries on `/en/reviews`)
+- Click-to-call working everywhere; WhatsApp linking working everywhere
+- Generated Arabic calligraphy logo as inline SVG
+- Per-locale sitemap and robots.txt
+- A **README.md** containing:
+  1. How to update properties (replace CSV, rebuild)
+  2. The three placeholders that need filling:
+     - `<!-- OFFICE_ADDRESS -->` — search and replace with the office address
+     - `<!-- FACEBOOK_URL -->` — search and replace with the FB page URL
+     - `<!-- INSTAGRAM_URL -->` — search and replace with the IG profile URL
+  3. How to add a real logo file (if a custom logo is provided later)
+  4. How to add real property photos (if uploaded later — file-naming convention by offer number)
+  5. Deployment steps (Vercel)
+
+---
+
+## 20. FINAL INSTRUCTION TO THE BUILDING AGENT
+
+Before you start writing code:
+
+1. **Parse the attached `عروض_العقارات.csv`** and tell the user:
+   - How many properties total
+   - Breakdown by classification (سكني / زراعي / صناعي / مختلط)
+   - Breakdown by operation (للبيع / للإيجار / مطلوب للشراء / بدل / مشاركة)
+   - Top 5 most common types
+   - Top 5 most common locations
+
+2. **Then build the site** following this specification exactly.
+
+3. If anything is ambiguous, make the choice that best serves the signature promise — **"بنقولك العيوب قبل المزايا"** — and document the decision in the README under "Design Decisions."
+
+4. Search the final codebase for the three placeholder strings (`<!-- OFFICE_ADDRESS -->`, `<!-- FACEBOOK_URL -->`, `<!-- INSTAGRAM_URL -->`) and confirm they appear at least once each in the README so the user can find them easily.
+
+Begin.

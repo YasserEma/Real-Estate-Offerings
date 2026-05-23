@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Osoul — أصول Real Estate"
+version = "1.0.0"
+id = "artifacts/osoul"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18926
+
+[services.development]
+run = "pnpm --filter @workspace/osoul run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/osoul", "run", "build" ]
+publicDir = "artifacts/osoul/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18926"
+BASE_PATH = "/"
