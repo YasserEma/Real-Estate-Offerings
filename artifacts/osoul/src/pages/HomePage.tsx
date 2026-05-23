@@ -111,7 +111,7 @@ export const HomePage: FC = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             className={cn(
               "text-primary-foreground font-serif leading-[1.1] mb-6",
-              isRTL ? "text-5xl md:text-[72px] font-black" : "text-5xl md:text-[72px] italic font-semibold"
+              isRTL ? "text-4xl sm:text-5xl md:text-[72px] font-black" : "text-4xl sm:text-5xl md:text-[72px] italic font-semibold"
             )}
           >
             {t("hero.promise")}
@@ -174,14 +174,22 @@ export const HomePage: FC = () => {
       <section className="bg-primary py-12 relative border-b border-accent/40">
         <div className="absolute top-0 inset-x-0 h-px bg-accent/40" />
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <Counter value={15} label={t("stats.years")} prefix="+" />
-            <div className="hidden md:flex items-center justify-center text-accent/30 text-xs">◆</div>
-            <Counter value={500} label={t("stats.clients")} prefix="+" />
-            <div className="hidden md:flex items-center justify-center text-accent/30 text-xs">◆</div>
-            <Counter value={69} label={t("stats.offers")} prefix="+" />
-            <div className="hidden md:flex items-center justify-center text-accent/30 text-xs">◆</div>
-            <Counter value={3} label={t("stats.sectors")} />
+          <div className="flex flex-wrap justify-center items-center gap-y-8">
+            <div className="w-1/2 sm:w-auto sm:flex-1 flex justify-center">
+              <Counter value={15} label={t("stats.years")} prefix="+" />
+            </div>
+            <div className="hidden sm:flex items-center justify-center text-accent/30 text-xs px-4">◆</div>
+            <div className="w-1/2 sm:w-auto sm:flex-1 flex justify-center">
+              <Counter value={500} label={t("stats.clients")} prefix="+" />
+            </div>
+            <div className="hidden sm:flex items-center justify-center text-accent/30 text-xs px-4">◆</div>
+            <div className="w-1/2 sm:w-auto sm:flex-1 flex justify-center">
+              <Counter value={69} label={t("stats.offers")} prefix="+" />
+            </div>
+            <div className="hidden sm:flex items-center justify-center text-accent/30 text-xs px-4">◆</div>
+            <div className="w-1/2 sm:w-auto sm:flex-1 flex justify-center">
+              <Counter value={3} label={t("stats.sectors")} />
+            </div>
           </div>
         </div>
         <div className="absolute bottom-0 inset-x-0 h-px bg-accent/40" />

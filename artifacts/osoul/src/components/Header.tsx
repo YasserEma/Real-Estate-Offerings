@@ -55,7 +55,7 @@ export const Header: FC = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           
           <Link href={`/${locale}`} className="shrink-0 flex items-center">
-            <Logo variant="navy" size="md" showWordmark={!scrolled} />
+            <Logo variant={scrolled ? "navy" : "ivory"} size="md" showWordmark={!scrolled} />
           </Link>
 
           {/* Desktop Nav */}
@@ -64,7 +64,10 @@ export const Header: FC = () => {
               <div key={i} className="relative group">
                 <Link 
                   href={link.path}
-                  className="flex items-center gap-1 text-foreground/80 hover:text-accent font-semibold transition-colors"
+                  className={cn(
+                    "flex items-center gap-1 font-semibold transition-colors",
+                    scrolled ? "text-foreground/80 hover:text-accent" : "text-white/90 hover:text-accent"
+                  )}
                 >
                   {link.label}
                   {link.dropdown && <ChevronDown className="w-4 h-4 opacity-50" />}
@@ -116,7 +119,7 @@ export const Header: FC = () => {
 
           {/* Mobile Toggle */}
           <button 
-            className="lg:hidden text-foreground p-2"
+            className={cn("lg:hidden p-2 transition-colors", scrolled ? "text-foreground" : "text-white")}
             onClick={() => setMobileMenuOpen(true)}
           >
             <Menu className="w-6 h-6" />

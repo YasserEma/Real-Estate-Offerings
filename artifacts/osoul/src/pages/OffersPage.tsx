@@ -247,7 +247,7 @@ export const OffersPage: FC = () => {
 
           {/* Active Filters Pills */}
           {hasFilters && (
-            <div className="flex flex-wrap gap-2 mb-6 hidden lg:flex">
+            <div className="hidden lg:flex flex-wrap gap-2 mb-6">
               {activeClassifications.map(c => (
                 <span key={c} className="inline-flex items-center gap-1 bg-muted px-3 py-1 rounded-full text-xs font-medium border border-border/50">
                   {isRTL ? c : CLASSIFICATION_EN[c]}

@@ -9,10 +9,10 @@ export const Footer: FC = () => {
 
   return (
     <footer className="w-full bg-primary text-primary-foreground border-t border-accent/40 pt-16 pb-8 px-6 md:px-12 font-sans">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-16">
         
         {/* Brand */}
-        <div className="space-y-6 flex flex-col items-start md:items-start items-center text-center md:text-start">
+        <div className="space-y-6 flex flex-col items-center md:items-start text-center md:text-start sm:col-span-2 md:col-span-1">
           <Logo variant="ivory" size="lg" />
           <p className="font-serif italic text-lg text-primary-foreground/90">
             {t("footer.tagline")}
