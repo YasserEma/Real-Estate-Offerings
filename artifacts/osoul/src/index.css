@@ -180,3 +180,13 @@ html[lang="en"] body {
 .animate-phone-pulse {
   animation: phonePulse 4s infinite;
 }
+
+@keyframes slideInDrawer {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+[dir="rtl"] @keyframes slideInDrawer {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
